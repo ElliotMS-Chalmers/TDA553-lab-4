@@ -4,15 +4,14 @@ import java.awt.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class WorkshopTest {
 
-    Workshop<Car> workshop1 = new Workshop<>(5);
-    Workshop<Saab95> workshop2 = new Workshop<>(3);
-    Saab95 saab = new Saab95();
-    Saab95 saab2 = new Saab95();
-    Volvo240 volvo = new Volvo240();
-    Scania truck = new Scania();
+    private final Workshop<Car> workshop1 = new Workshop<>(5);
+    private final Workshop<Saab95> workshop2 = new Workshop<>(3);
+    private final Saab95 saab = new Saab95();
+    private final Volvo240 volvo = new Volvo240();
 
     @Before
     public void setUp() {workshop1.carAdd(saab);}
@@ -36,5 +35,9 @@ public class WorkshopTest {
         assertEquals(saab, workshop1.getCar(0));
     }
 
+    @Test
+    public void testGetVehicleFromWorkshopWrongIndex() {
+        assertNull(workshop1.getCar(3));
+    }
 
 }

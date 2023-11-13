@@ -21,17 +21,17 @@ public class Workshop<T> {
 
 
     private T getVehicle(int index) {
-        if (index >= 0 && index < totalCars) {
-            return cars.get(index);
-        } else {
-            return null;
-        }
+        return cars.get(index);
     }
 
     public T getCar(int index) {
-        T car = getVehicle(index);
-        cars.remove(index);
-        return car;
+        if (index >= 0 && index < totalCars) {
+            T car = getVehicle(index);
+            cars.remove(index);
+            return car;
+        } else {
+            return null;
+        }
     }
 
 }
