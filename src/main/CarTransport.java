@@ -18,25 +18,33 @@ public class CarTransport extends Car {
 	    bedDown = false;
     }
 
-    public void lowerbed(){
-        if (currentSpeed == 0);
-        bedDown = true;
+    public boolean getBedDown() {
+        return bedDown;
     }
 
-    public void raisebed(){
-        if (currentSpeed == 0);
-        bedDown = false;
+    public ArrayList<Car> getCurrentCarsOnBed(){ return currentCarsOnBed; }
+
+    public void lowerBed(){
+        if (currentSpeed == 0) {
+            bedDown = true;
+        }
+    }
+
+    public void raiseBed(){
+        if (currentSpeed == 0) {
+            bedDown = false;
+        }
     }
 
     @Override
     public void gas(double amount) {
-		if (bedDown == false) return;
+		if (bedDown) return;
         if (amount > 1 || amount < 0) return;
 		incrementSpeed(amount);
     }
 
     @Override
-    public void brake(double amount) {	
+    public void brake(double amount) {
 		if (amount > 1 || amount < 0) return;
         decrementSpeed(amount);
     }
@@ -65,9 +73,10 @@ public class CarTransport extends Car {
 
 
     public void loadCar(Car car){
-        if (car instanceof Cartransport) return;
+        double[] carPosition = car.getPosition();
+        if (car instanceof CarTransport) return;
         if (bedDown) {
-            if (car.getPosition()[0] > position[0]-5 && car.getPosition()[0] < position[0]+5 && car.getPosition()[1] > position[1]-5 && car.getPosition()[1] < position[1]+5);{
+            if (carPosition[0] > position[0]-5 && carPosition[0] < position[0]+5 && carPosition[1] > position[1]-5 && carPosition[1] < position[1]+5){
                 currentCarsOnBed.add(car);
             }
         }
@@ -76,11 +85,10 @@ public class CarTransport extends Car {
     public void unloadCar(int numberOfCarsToUnload){
         int unloadAmount = numberOfCarsToUnload;
         int numberOfCarsOnBed = currentCarsOnBed.size();
-        if (numberOfCarsToUnload > numberOfCarsOnBed);{
+        if (numberOfCarsToUnload > numberOfCarsOnBed){
             unloadAmount = numberOfCarsOnBed;}
-         // implementera ett sätt att se till så att an inte ladar av för många
         if (bedDown){
-            for (int i = 1; i <= unloadAmount; i++){
+            for (int i = 0; i < unloadAmount; i++){
                 Car car  = currentCarsOnBed.get(currentCarsOnBed.size() - 1);
                 double[] currentPosition = {position[0]-i, position[1]-i};
                 car.setPosition(currentPosition);
