@@ -8,36 +8,32 @@ import static org.junit.Assert.assertNull;
 
 public class WorkshopTest {
 
-    private final Workshop<Car> workshop1 = new Workshop<>(5);
-    private final Workshop<Saab95> workshop2 = new Workshop<>(3);
-    private final Saab95 saab = new Saab95();
-    private final Volvo240 volvo = new Volvo240();
-
-    @Before
-    public void setUp() {workshop1.carAdd(saab);}
-
+    private final Workshop<Car> workshop = new Workshop<>(1);
 
     @Test
-    public void testAddCarInNonLimitedWorkshop() {
-        workshop1.carAdd(saab);
-        workshop1.carAdd(volvo);
-        assertEquals(3, workshop1.getCarlist().size());
+    public void testRegisterVehicleWithRemainingCapacity() {
+        workshop.registerVehicle(new Saab95());
+        assertEquals(1, workshop.getVehicles().size());
     }
 
     @Test
-    public void testAddCarinLimitedWorkshopWorking() {
-        workshop2.carAdd(saab);
-        assertEquals(1, workshop2.getCarlist().size());
+    public void testRegisterVehicleWithoutRemainingCapacity() {
+        workshop.registerVehicle(new Saab95());
+		workshop.registerVehicle(new Volvo240());
+        assertEquals(1, workshop.getVehicles().size());
     }
 
     @Test
-    public void testGetVehicleFromNonLimitedWorkshop(){
-        assertEquals(saab, workshop1.getCar(0));
+    public void testReleaseVehicle(){
+        Volvo240 registeredVehicle = new Volvo240();
+		workshop.registerVehicle(registeredVehicle); 
+		Car releasedVehicle = workshop.releaseVehicle(0);
+		assertEquals(registeredVehicle, releasedVehicle);
     }
 
     @Test
-    public void testGetVehicleFromWorkshopWrongIndex() {
-        assertNull(workshop1.getCar(3));
+    public void testReleaseVehicleInvalidIndex() {
+        assertNull(workshop.releaseVehicle(3));
     }
 
 }

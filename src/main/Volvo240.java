@@ -10,8 +10,7 @@ public class Volvo240 extends Car {
 			4,				// nrDoors
 			100, 			// enginePower
 			Color.black, 	// color
-			"Volvo240",		// modelName
-			1465			// weight 
+			"Volvo240"		// modelName
 		);
     }
 

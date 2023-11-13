@@ -1,37 +1,29 @@
 import java.util.ArrayList;
 public class Workshop<T> {
-
-    private int maxNrCars;
-    private int totalCars = 0;
-    private ArrayList<T> cars = new ArrayList<T>();
-    public Workshop(int amount) {
-        maxNrCars = amount;
+    private int capacity;
+    private int totalVehicles = 0;
+    private ArrayList<T> vehicles = new ArrayList<>();
+    
+	public Workshop(int capacity) {
+        this.capacity = capacity;
     }
 
-    public void carAdd(T car) {
-        if ((totalCars + 1) <= maxNrCars) {
-            totalCars += 1;
-            cars.add(car);
+    public void registerVehicle(T vehicle) {
+        if (totalVehicles + 1 <= capacity) {
+            totalVehicles += 1;
+            vehicles.add(vehicle);
         }
     }
 
-    public ArrayList<T> getCarlist() {
-        return cars;
+    public ArrayList<T> getVehicles() {
+        return vehicles;
     }
 
-
-    private T getVehicle(int index) {
-        return cars.get(index);
-    }
-
-    public T getCar(int index) {
-        if (index >= 0 && index < totalCars) {
-            T car = getVehicle(index);
-            cars.remove(index);
-            return car;
-        } else {
-            return null;
-        }
+    public T releaseVehicle(int index) {
+        if (index < 0 || index > totalVehicles) return null;
+		T car = vehicles.get(index);
+		vehicles.remove(index);
+		return car;
     }
 
 }

@@ -1,17 +1,16 @@
 import java.awt.*;
 
-public class Scania extends Car {
+public class Scania extends Vehicle {
 	private double bedAngle = 0.0;
-	private final double maxBedAngle = 70.0;
 	private final double minBedAngle = 0.0;
+	private final double maxBedAngle = 70.0;
 
 	public Scania(){
 		super(
 			2, 			// nrDoors
 			200,		// enginePower
 			Color.blue, // color
-			"Scania",	// modelName
-			9645		// weight 
+			"Scania"	// modelName
 		);
 	};
 
