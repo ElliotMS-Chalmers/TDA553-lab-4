@@ -80,7 +80,7 @@ public class Transport<T extends Towable> extends Vehicle {
 		if (!bedDown) return;
 		
 		int loadedCount = vehicles.size();
-		unloadCount = unloadCount > loadedCount ? loadedCount : unloadCount; 
+		if (unloadCount > loadedCount) unloadCount = loadedCount;
 
 		int uppperBount = Math.max(0, loadedCount - 1);
 		int lowerBound = loadedCount - unloadCount;
