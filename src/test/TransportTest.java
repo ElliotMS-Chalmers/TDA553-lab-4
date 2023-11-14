@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class TransportTest {
     private final Saab95 saab95 = new Saab95();
     private final Volvo240 volvo240 = new Volvo240();
-    private final Transport<Car> transport = new Transport<>();
+    private final Transport<Car> transport = new Transport<>(2);
     private final double delta = 0.0001;
 
     @Test
@@ -18,6 +18,11 @@ public class TransportTest {
     @Test
     public void testCurrentVehiclesOnbedInitializedAsZero(){
         assertEquals(0, transport.getVehicles().size());
+    }
+
+    @Test
+    public void testCapacityInitializedAsTwo() {
+        assertEquals(2, transport.getCapacity());
     }
 
     @Test
@@ -45,6 +50,13 @@ public class TransportTest {
         transport.lowerBed();
         transport.loadVehicle(saab95);
         transport.loadVehicle(volvo240);
+        assertEquals(2, transport.getVehicles().size());
+    }
+
+    public void testLoadVehiclesAboveCapacity() {
+        transport.loadVehicle(saab95);
+        transport.loadVehicle(volvo240);
+        transport.loadVehicle(new Saab95());
         assertEquals(2, transport.getVehicles().size());
     }
 

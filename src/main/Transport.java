@@ -5,14 +5,16 @@ public class Transport<T extends Towable> extends Vehicle {
     
     private boolean bedDown = false;
     private ArrayList<T> vehicles = new ArrayList<>();
+	private final int capacity; 
     
-    public Transport() {
+    public Transport(int capacity) {
 		super(
-			2, 			// nrDoors
-			125,		// enginePower
-			Color.red,  // color
+			2, 					// nrDoors
+			125,				// enginePower
+			Color.red,  		// color
 			"Biltransport1337"	// modelName
 		);
+		this.capacity = capacity;
     }
 
 	public boolean getBedDown() {
@@ -21,6 +23,10 @@ public class Transport<T extends Towable> extends Vehicle {
 
 	public ArrayList<T> getVehicles() {
 		return vehicles;
+	}
+
+	public int getCapacity() {
+		return capacity;
 	}
 
     public void lowerBed(){
@@ -65,7 +71,7 @@ public class Transport<T extends Towable> extends Vehicle {
 	}
 
     public void loadVehicle(T vehicle) {
-		if (bedDown &&  distanceToVehicle(vehicle) <= 5) {
+		if (vehicles.size() + 1 <= capacity && bedDown &&  distanceToVehicle(vehicle) <= 5) {
             vehicles.add(vehicle);
         }
     }
