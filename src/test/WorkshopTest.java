@@ -30,7 +30,8 @@ public class WorkshopTest {
 
     @Test
     public void testReleaseVehicleInvalidIndex() {
-        assertNull(workshop.releaseVehicle(3));
+        assertNull(workshop.releaseVehicle(-1));
+		assertNull(workshop.releaseVehicle(3));
     }
 
 }

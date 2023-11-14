@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Workshop<T extends Vehicle> {
     private int capacity;
-    private int totalVehicles = 0;
     private ArrayList<T> vehicles = new ArrayList<>();
     
 	public Workshop(int capacity) {
@@ -10,8 +9,7 @@ public class Workshop<T extends Vehicle> {
     }
 
     public void registerVehicle(T vehicle) {
-        if (totalVehicles + 1 <= capacity) {
-            totalVehicles += 1;
+        if (vehicles.size() + 1 <= capacity) {
             vehicles.add(vehicle);
         }
     }
@@ -21,7 +19,7 @@ public class Workshop<T extends Vehicle> {
     }
 
     public T releaseVehicle(int index) {
-        if (index < 0 || index > totalVehicles) return null;
+        if (index < 0 || index >= vehicles.size()) return null;
 		T vehicle = vehicles.remove(index);
 		return vehicle;
     }
