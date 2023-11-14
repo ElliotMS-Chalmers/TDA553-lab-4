@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-public class Workshop<T> {
+
+public class Workshop<T extends Vehicle> {
     private int capacity;
     private int totalVehicles = 0;
     private ArrayList<T> vehicles = new ArrayList<>();
@@ -21,9 +22,8 @@ public class Workshop<T> {
 
     public T releaseVehicle(int index) {
         if (index < 0 || index > totalVehicles) return null;
-		T car = vehicles.get(index);
-		vehicles.remove(index);
-		return car;
+		T vehicle = vehicles.remove(index);
+		return vehicle;
     }
 
 }

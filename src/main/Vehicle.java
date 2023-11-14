@@ -2,11 +2,11 @@ import java.awt.*;
 
 public abstract class Vehicle implements Movable {
 
-    protected int nrDoors; 				// Number of doors on the car
-    protected double enginePower; 		// Engine power of the car
-    protected double currentSpeed = 0;	// The current speed of the car
-    protected Color color;				// Color of the car
-    protected String modelName;			// The car model name
+    protected int nrDoors; 				
+    protected double enginePower; 		
+    protected double currentSpeed = 0;
+    protected Color color;			
+    protected String modelName;	
 	protected double[] position = new double[2];
 	protected Direction direction = Direction.NORTH;
 

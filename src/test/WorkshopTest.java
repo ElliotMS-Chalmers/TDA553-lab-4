@@ -1,6 +1,3 @@
-import org.junit.Before;
-
-import java.awt.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
