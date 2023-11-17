@@ -9,7 +9,7 @@ public class Workshop<T extends Vehicle> {
     }
 
     public void registerVehicle(T vehicle) {
-        if (vehicles.size() + 1 <= capacity) {
+        if (vehicles.size() < capacity) {
             vehicles.add(vehicle);
         }
     }
@@ -19,9 +19,7 @@ public class Workshop<T extends Vehicle> {
     }
 
     public T releaseVehicle(int index) {
-        if (index < 0 || index >= vehicles.size()) return null;
-		T vehicle = vehicles.remove(index);
-		return vehicle;
+        return index < 0 || index >= vehicles.size() ? null : vehicles.remove(index);
     }
 
 }

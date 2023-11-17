@@ -128,6 +128,15 @@ public class TransportTest {
     }
 
     @Test
+    public void testUnloadTwoVehiclesDifferentPositions() {
+        transport.lowerBed();
+        transport.loadVehicle(saab95);
+        transport.loadVehicle(volvo240);
+        transport.unloadVehicles(2);
+        assertFalse(saab95.getPosition() == volvo240.getPosition());
+    }
+
+    @Test
     public void testBreakWithLoadedTransport(){
         transport.lowerBed();
         transport.loadVehicle(saab95);
