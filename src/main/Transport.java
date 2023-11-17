@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Transport<T extends Towable> extends Vehicle {
+public class Transport<T extends Transportable> extends Vehicle {
     
     private boolean bedDown = false;
     private ArrayList<T> vehicles = new ArrayList<>();
