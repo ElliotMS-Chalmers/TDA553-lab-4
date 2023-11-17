@@ -51,7 +51,9 @@ public class TransportTest {
         assertEquals(2, transport.getVehicles().size());
     }
 
+    @Test
     public void testLoadVehiclesAboveCapacity() {
+        transport.lowerBed();
         transport.loadVehicle(saab95);
         transport.loadVehicle(volvo240);
         transport.loadVehicle(new Saab95());

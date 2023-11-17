@@ -71,7 +71,7 @@ public class Transport<T extends Transportable> extends Vehicle {
 	}
 
     public void loadVehicle(T vehicle) {
-		if (vehicles.size() + 1 <= capacity && bedDown &&  distanceToVehicle(vehicle) <= 5) {
+		if (vehicles.size() < capacity && bedDown &&  distanceToVehicle(vehicle) <= 5) {
             vehicles.add(vehicle);
         }
     }
