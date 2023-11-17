@@ -1,3 +1,5 @@
+package model;
+
 import java.awt.*;
 
 public abstract class Vehicle implements Movable {
@@ -88,7 +90,7 @@ public abstract class Vehicle implements Movable {
 	    currentSpeed = 0;
     }
 
-    protected double speedFactor() {
+    public double speedFactor() {
         return enginePower * 0.01;
     }
 

@@ -3,6 +3,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import model.*;
+
 public class WorkshopTest {
 
     private final Workshop<Car> workshop = new Workshop<>(1);

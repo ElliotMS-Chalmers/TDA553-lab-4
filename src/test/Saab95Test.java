@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
+import model.Saab95;
+
 public class Saab95Test {
 	private final Saab95 saab95 = new Saab95();
 	private final double delta = 0.0001;

@@ -1,3 +1,5 @@
+package model;
+
 interface Transportable {
 	public void setPosition(double[] amount);
 	public double[] getPosition();

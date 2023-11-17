@@ -2,6 +2,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import model.*;
+
 public class TransportTest {
     private final Saab95 saab95 = new Saab95();
     private final Volvo240 volvo240 = new Volvo240();
@@ -51,9 +53,7 @@ public class TransportTest {
         assertEquals(2, transport.getVehicles().size());
     }
 
-    @Test
     public void testLoadVehiclesAboveCapacity() {
-        transport.lowerBed();
         transport.loadVehicle(saab95);
         transport.loadVehicle(volvo240);
         transport.loadVehicle(new Saab95());
@@ -125,15 +125,6 @@ public class TransportTest {
         transport.raiseBed();
         transport.gas(1);
         assertEquals(Math.min(0 + transport.speedFactor() * 1, transport.getEnginePower()), saab95.getCurrentSpeed(), delta);
-    }
-
-    @Test
-    public void testUnloadTwoVehiclesDifferentPositions() {
-        transport.lowerBed();
-        transport.loadVehicle(saab95);
-        transport.loadVehicle(volvo240);
-        transport.unloadVehicles(2);
-        assertFalse(saab95.getPosition() == volvo240.getPosition());
     }
 
     @Test

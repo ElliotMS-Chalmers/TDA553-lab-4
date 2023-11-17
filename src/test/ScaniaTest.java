@@ -2,6 +2,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import model.Scania;
+
 public class ScaniaTest {
 	private final Scania scania = new Scania();
 	private final double delta = 0.0001;

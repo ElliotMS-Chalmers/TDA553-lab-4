@@ -1,9 +1,11 @@
-import org.junit.Before;
 
 import java.awt.*;
 import org.junit.Test;
 
+import org.junit.Before;
 import static org.junit.Assert.assertEquals;
+
+import model.Vehicle;
 
 public class VehicleTest {
 	
