@@ -8,10 +8,6 @@ public abstract class Car extends Vehicle implements Transportable {
 		super(nrDoors, enginePower, color, modelName);
 	}
 
-	public void setPosition(double[] amount) {
-		position = amount;
-	}
-
 	public void setCurrentSpeed(double amount){
 		currentSpeed = amount;
 	}

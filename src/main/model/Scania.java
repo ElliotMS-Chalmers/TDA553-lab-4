@@ -10,7 +10,7 @@ public class Scania extends Vehicle {
 	public Scania(){
 		super(
 			2, 			// nrDoors
-			200,		// enginePower
+			300,		// enginePower
 			Color.blue, // color
 			"Scania"	// modelName
 		);

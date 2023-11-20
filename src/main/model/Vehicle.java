@@ -77,6 +77,9 @@ public abstract class Vehicle implements Movable {
 		return position;
 	}
 
+	public void setPosition(double[] amount) {
+		position = amount;
+	}
 
 	public Direction getDirection() {
 		return direction;
