@@ -6,9 +6,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.chalmers</groupId>
-	<artifactId>TDA553-lab-2</artifactId>
+	<artifactId>TDA553-lab-3</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>TDA553-lab-2</name>
+	<name>TDA553-lab-3</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
