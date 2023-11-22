@@ -46,7 +46,7 @@ final class VehicleImage {
 	public Vehicle vehicle;
 	public BufferedImage image;
 
-	VehicleImage(Vehicle v, String path) {
+	public VehicleImage(Vehicle v, String path) {
 		vehicle = v;
 		try { image = ImageIO.read(new File(path)); } 
 		catch (IOException ex) { ex.printStackTrace(); }

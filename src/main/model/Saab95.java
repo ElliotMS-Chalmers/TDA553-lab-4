@@ -2,7 +2,7 @@ package model;
 
 import java.awt.*;
 
-public class Saab95 extends Car { 
+public class Saab95 extends Vehicle {
 
     private boolean turboOn;
     
