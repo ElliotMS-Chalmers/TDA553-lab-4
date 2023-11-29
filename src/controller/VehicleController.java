@@ -27,9 +27,9 @@ public class VehicleController {
         // Start a new view and send a reference of self
         cc.frame = new VehicleView("vehicleSim 1.0", cc);
 
-        cc.addvehicle(new Volvo240(), "src/main/resources/Volvo240.jpg");
-        cc.addvehicle(new Saab95(), "src/main/resources/Saab95.jpg");
-        cc.addvehicle(new Scania(), "src/main/resources/Scania.jpg");
+        cc.addvehicle(new Volvo240(), "src/resources/Volvo240.jpg");
+        cc.addvehicle(new Saab95(), "src/resources/Saab95.jpg");
+        cc.addvehicle(new Scania(), "src/resources/Scania.jpg");
         
 		// Start the timer
         cc.timer.start();
