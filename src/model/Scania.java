@@ -16,7 +16,7 @@ public class Scania extends Vehicle {
 		);
 	};
 
-	public void raiseBed(double angle) {
+	public void liftBed(double angle) {
 		if (currentSpeed == 0) { 
 			bedAngle = Math.min(maxBedAngle, bedAngle + angle);
 		}

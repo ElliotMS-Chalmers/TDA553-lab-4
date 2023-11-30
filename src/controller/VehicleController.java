@@ -9,29 +9,21 @@ import model.*;
 import view.*;
 
 public class VehicleController {
-    // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
-    // The timer is started with an listener (see below) that executes the statements
-    // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
 
-    // The frame that represents this instance View of the MVC pattern
     VehicleView frame;
-    // A list of vehicles, modify if needed
     ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     public static void main(String[] args) {
-        // Instance of this class
         VehicleController cc = new VehicleController();
 
-        // Start a new view and send a reference of self
         cc.frame = new VehicleView("vehicleSim 1.0", cc);
 
         cc.addvehicle(new Volvo240(), "src/resources/Volvo240.jpg");
         cc.addvehicle(new Saab95(), "src/resources/Saab95.jpg");
         cc.addvehicle(new Scania(), "src/resources/Scania.jpg");
         
-		// Start the timer
         cc.timer.start();
     }
 
@@ -40,9 +32,6 @@ public class VehicleController {
 		frame.drawPanel.addVehicle(vehicle, path);
 	}
 
-    /* Each step the TimerListener moves all the vehicles in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Vehicle vehicle : vehicles) {
@@ -92,7 +81,7 @@ public class VehicleController {
         for (Vehicle vehicle : vehicles) {
 			if (vehicle instanceof Scania) {
 				Scania scania = (Scania) vehicle;
-				scania.raiseBed(70);
+				scania.liftBed(70);
 			}
         }
     }
