@@ -9,9 +9,10 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 import model.Vehicle;
+import model.Observer;
 
 // This panel represent the animated part of the view with the car images.
-public class DrawPanel extends JPanel {
+public class DrawPanel extends JPanel implements Observer{
 
 	ArrayList<VehicleImage> vehicleImages = new ArrayList<>();
 
@@ -38,8 +39,16 @@ public class DrawPanel extends JPanel {
 				(int)vehicleImage.vehicle.getPosition()[1],
 				null
 			);
+			System.out.println(vehicleImage.vehicle.getPosition()[0]);
 		}
     }
+
+	@Override
+	public void actOnChange(boolean change) {
+		if (change){
+			this.repaint();
+		}
+	}
 
 }
 

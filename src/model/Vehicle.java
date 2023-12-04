@@ -2,7 +2,7 @@ package model;
 
 import java.awt.*;
 
-public abstract class Vehicle implements Movable {
+public abstract class Vehicle extends Observable implements Movable {
 
     protected int nrDoors; 				
     protected double enginePower; 		
@@ -40,6 +40,8 @@ public abstract class Vehicle implements Movable {
 			case SOUTH: position[1] -= currentSpeed; break;
 			case WEST: 	position[0] -= currentSpeed; break;
 		}
+		change = true;
+		notifyObservers();
 	}
 
 	public void turnLeft() {

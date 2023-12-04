@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import controller.VehicleController;
 import model.Vehicle;
+import model.Observer;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -18,7 +19,7 @@ import model.Vehicle;
  * each of it's components.
  **/
 
-public class VehicleView extends JFrame {
+public class VehicleView extends JFrame implements Observer{
     private static final int X = 800;
     private static final int Y = 800;
 
