@@ -64,7 +64,7 @@ public class App {
             public void actionPerformed(ActionEvent e) { c.setTurboOff();}
         });
 
-        c.run()
+        c.run();
 
     }
 }
