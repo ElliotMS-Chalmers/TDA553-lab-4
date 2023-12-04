@@ -6,8 +6,10 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import controller.VehicleController;
+import model.Vehicle;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -25,11 +27,12 @@ public class VehicleView extends JFrame {
 
     public DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
+
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
-    int gasAmount = 0;
+    public int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
 
     JButton gasButton = new JButton("Gas");
@@ -46,6 +49,10 @@ public class VehicleView extends JFrame {
     public VehicleView(String framename, VehicleController vc){
         this.vehicleC = vc;
         initComponents(framename);
+    }
+
+    public void addVehicle(Vehicle vehicle, String path) {
+        drawPanel.addVehicle(vehicle, path);
     }
 
     private void initComponents(String title) {
@@ -100,61 +107,6 @@ public class VehicleView extends JFrame {
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
 
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.gas(gasAmount);
-            }
-        });
-
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.brake(gasAmount);
-            }
-        });
-
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.startEngine();
-            }
-        });
-
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.stopEngine();
-            }
-        });
-
-        liftBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.raiseBed();
-            }
-        });
-
-        lowerBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.lowerBed();
-            }
-        });
-
-        turboOnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.setTurboOn();
-            }
-        });
-
-        turboOffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vehicleC.setTurboOff();
-            }
-        });
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
@@ -169,7 +121,36 @@ public class VehicleView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-	public int getY() {
-		return Y; 
-	}
+    public void addGasListener(ActionListener listener) {
+        gasButton.addActionListener(listener);
+    }
+
+
+    public void addBrakeListener(ActionListener listener) {
+        brakeButton.addActionListener(listener);
+    }
+
+    public void addStartListener(ActionListener listener) {
+        startButton.addActionListener(listener);
+    }
+
+    public void addStopListener(ActionListener listener) {
+        stopButton.addActionListener(listener);
+    }
+
+    public void addLiftBedListener(ActionListener listener) {
+        liftBedButton.addActionListener(listener);
+    }
+
+    public void addLowerBedListener(ActionListener listener) {
+        lowerBedButton.addActionListener(listener);
+    }
+
+    public void addTurboOnListener(ActionListener listener) {
+        turboOnButton.addActionListener(listener);
+    }
+
+    public void addTurboOffListener(ActionListener listener) {
+        turboOffButton.addActionListener(listener);
+    }
 }

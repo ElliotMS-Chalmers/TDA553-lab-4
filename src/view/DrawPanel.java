@@ -22,6 +22,10 @@ public class DrawPanel extends JPanel {
         this.setBackground(Color.green);
     }
 
+	public void addVehicle(Vehicle vehicle, String path) {
+		vehicleImages.add(new VehicleImage(vehicle, path));
+	}
+
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override
     protected void paintComponent(Graphics g) {
@@ -37,9 +41,6 @@ public class DrawPanel extends JPanel {
 		}
     }
 
-	public void addVehicle(Vehicle vehicle, String path) {
-		vehicleImages.add(new VehicleImage(vehicle, path));
-	}
 }
 
 final class VehicleImage {

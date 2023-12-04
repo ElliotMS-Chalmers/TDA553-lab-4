@@ -15,22 +15,14 @@ public class VehicleController {
     VehicleView frame;
     ArrayList<Vehicle> vehicles = new ArrayList<>();
 
-    public static void main(String[] args) {
-        VehicleController cc = new VehicleController();
 
-        cc.frame = new VehicleView("vehicleSim 1.0", cc);
-
-        cc.addvehicle(new Volvo240(), "src/resources/Volvo240.jpg");
-        cc.addvehicle(new Saab95(), "src/resources/Saab95.jpg");
-        cc.addvehicle(new Scania(), "src/resources/Scania.jpg");
-        
-        cc.timer.start();
-    }
-
-	private void addvehicle(Vehicle vehicle, String path) {
+	public void addvehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
-		frame.drawPanel.addVehicle(vehicle, path);
 	}
+
+    public void run() {
+        timer.start();
+    }
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -38,7 +30,6 @@ public class VehicleController {
                 vehicle.move();
                 int x = (int) Math.round(vehicle.getPosition()[0]);
                 int y = (int) Math.round(vehicle.getPosition()[1]);
-                frame.drawPanel.repaint();
 				if (y > 800 - 240 - 60 || y < 0) {
 					vehicle.stopEngine();
 					vehicle.turnLeft();
