@@ -2,17 +2,15 @@ package model;
 
 import java.util.ArrayList;
 
-public class Observable {
-    protected boolean change;
-    private ArrayList<Observer> observers;
+abstract class Observable {
+    private ArrayList<Observer> observers = new ArrayList<>();
 
-    public void addObserver(Observer observer){
-        observers.add(observer);
+    public void addObserver(Observer o){
+        observers.add(o);
     }
     protected void notifyObservers(){
         for (Observer o : observers) {
-           o.actOnChange(change);
+           o.update();
         }
-        change = false;
     }
 }

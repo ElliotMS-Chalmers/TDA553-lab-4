@@ -5,16 +5,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import model.*;
-import view.*;
+import model.Vehicle;
+import model.Saab95;
+import model.Scania;
 
 public class VehicleController {
-    private final int delay = 50;
-    private Timer timer = new Timer(delay, new TimerListener());
+    private final int tickRate = 50;
+    private Timer timer = new Timer(tickRate, new TimerListener());
 
-    VehicleView frame;
     ArrayList<Vehicle> vehicles = new ArrayList<>();
-
 
 	public void addvehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
@@ -54,7 +53,6 @@ public class VehicleController {
             vehicle.brake(brake);
         }
     }
-
 
     public void stopEngine() {
         for (Vehicle vehicle : vehicles) {

@@ -34,13 +34,15 @@ public abstract class Vehicle extends Observable implements Movable {
 	}
 
 	public void move() {
+		if (currentSpeed == 0) return;
+
 		switch(direction) {
 			case NORTH: position[1] += currentSpeed; break;
 			case EAST: 	position[0] += currentSpeed; break;
 			case SOUTH: position[1] -= currentSpeed; break;
 			case WEST: 	position[0] -= currentSpeed; break;
 		}
-		change = true;
+
 		notifyObservers();
 	}
 
@@ -54,7 +56,8 @@ public abstract class Vehicle extends Observable implements Movable {
 
     public int getNrDoors() {
         return nrDoors;
-    }
+	}
+
     public double getEnginePower() {
         return enginePower;
     }

@@ -9,22 +9,25 @@ import java.awt.event.ActionListener;
 
 public class App {
     public static void main(String[] args) {
-        VehicleController c = new VehicleController();
-
-        VehicleView frame = new VehicleView("vehicleSim 1.0", c);
         Volvo240 volvo = new Volvo240();
-        //Saab95 saab = new Saab95();
+        Saab95 saab = new Saab95();
         Scania scania = new Scania();
-        c.addvehicle(volvo);
-        //c.addvehicle(saab);
-        c.addvehicle(scania);
-        frame.addVehicle(volvo, "src/resources/Volvo240.jpg");
-        //frame.addVehicle(saab, "src/resources/Saab95.jpg");
-        frame.addVehicle(scania, "src/resources/Scania.jpg");
-        volvo.addObserver(frame);
-        //saab.addObserver(frame);
-        scania.addObserver(frame);
+        
+		VehicleController c = new VehicleController();
 
+        c.addvehicle(volvo);
+        c.addvehicle(saab);
+        c.addvehicle(scania);
+		
+        VehicleView frame = new VehicleView("vehicleSim 1.0", c);
+        
+		frame.addVehicle(volvo, "src/resources/Volvo240.jpg");
+        frame.addVehicle(saab, "src/resources/Saab95.jpg");
+        frame.addVehicle(scania, "src/resources/Scania.jpg");
+
+        volvo.addObserver(frame);
+        saab.addObserver(frame);
+        scania.addObserver(frame);
 
         frame.addGasListener(new ActionListener() {
             @Override
@@ -67,6 +70,5 @@ public class App {
         });
 
         c.run();
-
     }
 }

@@ -9,14 +9,12 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 import model.Vehicle;
-import model.Observer;
 
 // This panel represent the animated part of the view with the car images.
-public class DrawPanel extends JPanel implements Observer{
+public class DrawPanel extends JPanel{
 
 	ArrayList<VehicleImage> vehicleImages = new ArrayList<>();
 
-    // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
@@ -33,32 +31,28 @@ public class DrawPanel extends JPanel implements Observer{
         super.paintComponent(g);
 		for (int i = 0; i < vehicleImages.size(); i++) {
 			VehicleImage vehicleImage = vehicleImages.get(i); 
+			double[] pos = vehicleImage.getVehiclePosition();
 			g.drawImage(
-				vehicleImage.image, 
-				(int)vehicleImage.vehicle.getPosition()[0] + 100*i, 
-				(int)vehicleImage.vehicle.getPosition()[1],
+				vehicleImage.getImage(), 
+				(int)pos[0] + 100*i, 
+				(int)pos[1],
 				null
 			);
-			System.out.println(vehicleImage.vehicle.getPosition()[0]);
 		}
     }
 
-	@Override
-	public void actOnChange(boolean change) {
-		if (change){
-			this.repaint();
+	private class VehicleImage {
+		private Vehicle vehicle;
+		private BufferedImage image;
+
+		public VehicleImage(Vehicle v, String path) {
+			vehicle = v;
+			try { image = ImageIO.read(new File(path)); } 
+			catch (IOException ex) { ex.printStackTrace();}
 		}
-	}
 
-}
-
-final class VehicleImage {
-	public Vehicle vehicle;
-	public BufferedImage image;
-
-	public VehicleImage(Vehicle v, String path) {
-		vehicle = v;
-		try { image = ImageIO.read(new File(path)); } 
-		catch (IOException ex) { ex.printStackTrace(); }
+		public double[] getVehiclePosition() { return vehicle.getPosition(); }
+		public BufferedImage getImage() { return image; }
 	}
 }
+
