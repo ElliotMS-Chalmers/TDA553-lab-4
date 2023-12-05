@@ -15,9 +15,6 @@ public class Saab95 extends Vehicle {
 		);
 	    turboOn = false;
     }
-    public boolean getTurboOn(){
-		return turboOn;
-	}
 
     public void setTurboOn() {
 	    turboOn = true;
@@ -27,7 +24,7 @@ public class Saab95 extends Vehicle {
 	    turboOn = false;
     }
     
-    public double speedFactor() {
+    protected double speedFactor() {
         double turbo = turboOn ? 1.3 : 1;
         return enginePower * 0.01 * turbo;
     }

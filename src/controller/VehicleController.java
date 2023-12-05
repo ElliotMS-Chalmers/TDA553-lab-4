@@ -15,7 +15,7 @@ public class VehicleController {
 
     ArrayList<Vehicle> vehicles = new ArrayList<>();
 
-	public void addvehicle(Vehicle vehicle) {
+	public void addVehicle(Vehicle vehicle) {
 		vehicles.add(vehicle);
 	}
 
@@ -24,9 +24,9 @@ public class VehicleController {
     }
 
     private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : vehicles) {
-                vehicle.move();
+		public void actionPerformed(ActionEvent e) {
+			for (Vehicle vehicle : vehicles) {
+				vehicle.move();
                 int x = (int) Math.round(vehicle.getPosition()[0]);
                 int y = (int) Math.round(vehicle.getPosition()[1]);
 				if (y > 800 - 240 - 60 || y < 0) {

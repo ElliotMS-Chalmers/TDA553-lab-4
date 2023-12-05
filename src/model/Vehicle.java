@@ -12,7 +12,7 @@ public abstract class Vehicle extends Observable implements Movable {
 	protected double[] position = new double[2];
 	protected Direction direction = Direction.NORTH;
 
-	public enum Direction {
+	private enum Direction {
 		NORTH, EAST, SOUTH, WEST;
 
 		private static final Direction[] directions = values();
@@ -98,7 +98,7 @@ public abstract class Vehicle extends Observable implements Movable {
 	    currentSpeed = 0;
     }
 
-    public double speedFactor() {
+    protected double speedFactor() {
         return enginePower * 0.01;
     }
 

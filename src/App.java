@@ -1,4 +1,5 @@
 import controller.VehicleController;
+import model.Vehicle;
 import model.Saab95;
 import model.Scania;
 import model.Volvo240;
@@ -6,28 +7,26 @@ import view.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class App {
+
     public static void main(String[] args) {
-        Volvo240 volvo = new Volvo240();
-        Saab95 saab = new Saab95();
-        Scania scania = new Scania();
-        
+		ArrayList<Vehicle> vehicles = new ArrayList<>(); 
+		vehicles.add(new Volvo240());
+		vehicles.add(new Saab95());
+		vehicles.add(new Scania());
+       
 		VehicleController c = new VehicleController();
-
-        c.addvehicle(volvo);
-        c.addvehicle(saab);
-        c.addvehicle(scania);
-		
         VehicleView frame = new VehicleView("vehicleSim 1.0", c);
-        
-		frame.addVehicle(volvo, "src/resources/Volvo240.jpg");
-        frame.addVehicle(saab, "src/resources/Saab95.jpg");
-        frame.addVehicle(scania, "src/resources/Scania.jpg");
-
-        volvo.addObserver(frame);
-        saab.addObserver(frame);
-        scania.addObserver(frame);
+	
+		for (Vehicle v : vehicles) {
+			c.addVehicle(v);
+			if (v instanceof Volvo240) { frame.addVehicle(v, "src/resources/Volvo240.jpg"); }
+			else if (v instanceof Saab95) { frame.addVehicle(v, "src/resources/Saab95.jpg"); }
+			else if (v instanceof Scania) { frame.addVehicle(v, "src/resources/Scania.jpg"); }
+			v.addObserver(frame);
+		}
 
         frame.addGasListener(new ActionListener() {
             @Override

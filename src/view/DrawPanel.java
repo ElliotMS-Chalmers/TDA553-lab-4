@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import model.Vehicle;
 
 // This panel represent the animated part of the view with the car images.
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel {
 
 	ArrayList<VehicleImage> vehicleImages = new ArrayList<>();
 

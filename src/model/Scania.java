@@ -33,8 +33,4 @@ public class Scania extends Vehicle {
 		if (bedAngle != 0) return;
 		super.gas(amount);
     }
-
-	public double getBedAngle() {
-		return bedAngle;
-	}
 }
