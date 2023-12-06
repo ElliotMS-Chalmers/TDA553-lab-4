@@ -1,27 +1,39 @@
-import controller.VehicleController;
-import model.Vehicle;
-import model.Saab95;
-import model.Scania;
-import model.TimerListener;
-import model.Volvo240;
+import controller.*;
+import model.*;
 import view.*;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class App {
+	private static ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>() {
+		@Override
+		public boolean add(Vehicle v) {
+			v.addObserver(frame);
+			return super.add(v);
+		}
+	}; 
+    
+	private static TimerListener timerListener = new TimerListener(vehicles);
+	private static VehicleController controller = new VehicleController(vehicles, timerListener);
+	private static GasPanel gasPanel = new GasPanel(controller);
+	private static ControlPanel controlPanel = new ControlPanel(controller, gasPanel);
+	private static EnginePanel enginePanel = new EnginePanel(controller);
 
-    public static void main(String[] args) {
-		BufferedImage VOLVO_IMAGE;	
-		BufferedImage SAAB_IMAGE;
-		BufferedImage SCANIA_IMAGE;	
+	private static BufferedImage VOLVO_IMAGE;	
+	private static BufferedImage SAAB_IMAGE;
+	private static BufferedImage SCANIA_IMAGE;	
+	private static HashMap<Class<? extends Vehicle>, BufferedImage> imageMap;
 
+	private static Frame frame;
+
+	public static void main(String[] args) {
 		try { 
 			VOLVO_IMAGE = ImageIO.read(new File("src/resources/Volvo240.jpg"));
 			SAAB_IMAGE = ImageIO.read(new File("src/resources/Saab95.jpg"));
@@ -30,85 +42,25 @@ public class App {
 			throw new RuntimeException("Failed to load vehicle images: " + e.getMessage(), e);
 		}
 
-		HashMap<Class<? extends Vehicle>, BufferedImage> imageMap = new HashMap<>();
-		imageMap.put(Volvo240.class, VOLVO_IMAGE);
-		imageMap.put(Saab95.class, SAAB_IMAGE);
-		imageMap.put(Scania.class, SCANIA_IMAGE);
+		imageMap = new HashMap<>(Map.of(
+			Volvo240.class, VOLVO_IMAGE,
+			Saab95.class, SAAB_IMAGE,
+			Scania.class, SCANIA_IMAGE
+		));
 
-		ArrayList<Vehicle> vehicles = new ArrayList<>(); 
+		frame = new Frame("vehicleSim 1.0", vehicles, imageMap); 
+		frame.add(controlPanel);
+		frame.add(gasPanel);
+		frame.add(enginePanel);
+		
 		vehicles.add(new Volvo240());
 		vehicles.add(new Saab95());
 		vehicles.add(new Scania());
-        
-        TimerListener timerListener = new TimerListener(vehicles);
-		VehicleController c = new VehicleController(vehicles, timerListener);
-		VehicleView frame = new VehicleView("vehicleSim 1.0", vehicles, imageMap);
-	
+
 		for (Vehicle v : vehicles) {
 			v.addObserver(frame);
 		}
 
-        frame.addGasListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { c.gas(frame.gasAmount);}
-        });
-
-        frame.addBrakeListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { c.brake(frame.gasAmount);}
-        });
-
-        frame.addStartListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { c.startEngine();}
-        });
-
-        frame.addStopListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { c.stopEngine();}
-        });
-
-        frame.addLiftBedListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { c.raiseBed();}
-        });
-
-        frame.addLowerBedListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { c.lowerBed();}
-        });
-
-        frame.addTurboOnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { c.setTurboOn();}
-        });
-
-        frame.addTurboOffListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { c.setTurboOff();}
-        });
-
-        frame.addVehicleListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { 
-				int size = vehicles.size();
-				if (size == 10) return;
-				Vehicle vehicle = new Volvo240();
-				vehicles.add(vehicle);
-				vehicle.addObserver(frame);
-			}
-        });
-
-        frame.removeVehicleListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { 
-				int size = vehicles.size();
-				if (size <= 0) return;
-				Vehicle v = vehicles.remove(size-1);
-				v.notifyObservers();
-			}
-        });
-
-        c.run();
+        controller.run();
     }
 }

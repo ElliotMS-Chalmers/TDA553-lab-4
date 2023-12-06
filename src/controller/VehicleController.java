@@ -1,19 +1,13 @@
 package controller;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import model.Vehicle;
-import model.Saab95;
-import model.Scania;
-import model.TimerListener;
+import model.*;
 
 public class VehicleController {
     private final int tickRate = 50;
     private Timer timer;
-
     private final ArrayList<Vehicle> vehicles; 
 
 	public VehicleController(ArrayList<Vehicle> vehicles, TimerListener timerListener) {
@@ -85,5 +79,20 @@ public class VehicleController {
 				saab95.setTurboOff();
 			}
 		}
+	}
+
+	public void addVehicle() {
+		int size = vehicles.size();
+		if (size == 10) return;
+		Vehicle vehicle = new Volvo240();
+		vehicles.add(vehicle);
+		// TODO vehicle.addObserver(observer)
+	}
+
+	public void removeVehicle() {
+		int size = vehicles.size();
+		if (size <= 0) return;
+		Vehicle v = vehicles.remove(size-1);
+		v.notifyObservers();
 	}
 }
