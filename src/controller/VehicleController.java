@@ -8,36 +8,21 @@ import java.util.ArrayList;
 import model.Vehicle;
 import model.Saab95;
 import model.Scania;
+import model.TimerListener;
 
 public class VehicleController {
     private final int tickRate = 50;
-    private Timer timer = new Timer(tickRate, new TimerListener());
+    private Timer timer;
 
-    private final ArrayList<Vehicle> vehicles;
+    private final ArrayList<Vehicle> vehicles; 
 
-	public VehicleController(ArrayList<Vehicle> vehicles) {
+	public VehicleController(ArrayList<Vehicle> vehicles, TimerListener timerListener) {
 		this.vehicles = vehicles;
+        this.timer = new Timer(tickRate, timerListener);
 	}
 
     public void run() {
         timer.start();
-    }
-
-    private class TimerListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			for (Vehicle vehicle : vehicles) {
-				vehicle.move();
-                int x = (int) Math.round(vehicle.getPosition()[0]);
-                int y = (int) Math.round(vehicle.getPosition()[1]);
-				if (y > 800 - 240 - 60 || y < 0) {
-					vehicle.stopEngine();
-					vehicle.turnLeft();
-					vehicle.turnLeft();
-					double[] newPos = {x, Math.round(y / 100) * 100};
-					vehicle.setPosition(newPos);
-				}
-            }
-        }
     }
 
     public void gas(int amount) {

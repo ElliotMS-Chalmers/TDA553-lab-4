@@ -2,6 +2,7 @@ import controller.VehicleController;
 import model.Vehicle;
 import model.Saab95;
 import model.Scania;
+import model.TimerListener;
 import model.Volvo240;
 import view.*;
 
@@ -38,8 +39,9 @@ public class App {
 		vehicles.add(new Volvo240());
 		vehicles.add(new Saab95());
 		vehicles.add(new Scania());
-       
-		VehicleController c = new VehicleController(vehicles);
+        
+        TimerListener timerListener = new TimerListener(vehicles);
+		VehicleController c = new VehicleController(vehicles, timerListener);
 		VehicleView frame = new VehicleView("vehicleSim 1.0", vehicles, imageMap);
 	
 		for (Vehicle v : vehicles) {
