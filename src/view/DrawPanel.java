@@ -19,7 +19,7 @@ public class DrawPanel extends JPanel {
 		this.imageMap = imageMap;
 
 		this.setDoubleBuffered(true);
-        this.setPreferredSize(new Dimension(860, 800));
+        this.setPreferredSize(new Dimension(1100, 800));
         this.setBackground(Color.green);
     }
 

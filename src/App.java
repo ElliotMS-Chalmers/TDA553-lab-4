@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.Timer;
 
 public class App {
 	private static ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>() {
@@ -20,7 +19,6 @@ public class App {
 		}
 	}; 
 
-	private static Timer timer = new Timer(50, new TimerListener(vehicles));
 	private static VehicleController controller = new VehicleController(vehicles);
 	private static GasPanel gasPanel = new GasPanel(controller);
 	private static ControlPanel controlPanel = new ControlPanel(controller, gasPanel);
@@ -52,6 +50,6 @@ public class App {
 		vehicles.add(new Saab95());
 		vehicles.add(new Scania());
 
-        timer.start();
+        controller.run();
     }
 }

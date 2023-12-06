@@ -43,6 +43,14 @@ public abstract class Vehicle extends Observable implements Movable {
 			case WEST: 	position[0] -= currentSpeed; break;
 		}
 
+		double y = position[1];
+		if (y > 800-60 || y < 0) {
+			stopEngine();
+			turnLeft();
+			turnLeft();
+			position[1] = 800-60;
+		}
+
 		notifyObservers();
 	}
 

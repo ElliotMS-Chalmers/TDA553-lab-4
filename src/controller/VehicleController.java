@@ -1,14 +1,32 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.Timer;
 
 import model.*;
 
 public class VehicleController {
-    private final ArrayList<Vehicle> vehicles; 
+	private final ArrayList<Vehicle> vehicles; 
+	private Timer timer = new Timer(50, null);
 
 	public VehicleController(ArrayList<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+		
+		timer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { move(); }
+		});
+	}
+
+	public void run() {
+		timer.start();
+	}
+
+	public void move() {
+		for (Vehicle vehicle : vehicles) {
+			vehicle.move();
+        }
 	}
 
     public void gas(int amount) {
@@ -78,7 +96,6 @@ public class VehicleController {
 		if (size == 10) return;
 		Vehicle vehicle = new Volvo240();
 		vehicles.add(vehicle);
-		// TODO vehicle.addObserver(observer)
 	}
 
 	public void removeVehicle() {
