@@ -90,7 +90,7 @@ public class App {
             @Override
             public void actionPerformed(ActionEvent e) { 
 				int size = vehicles.size();
-				if (size <= 10) return;
+				if (size == 10) return;
 				Vehicle vehicle = new Volvo240();
 				vehicles.add(vehicle);
 				vehicle.addObserver(frame);
