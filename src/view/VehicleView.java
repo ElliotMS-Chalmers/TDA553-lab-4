@@ -14,7 +14,7 @@ import model.Vehicle;
 import model.Observer;
 
 public class VehicleView extends JFrame implements Observer {
-    private static final int X = 800;
+    private static final int X = 1100;
     private static final int Y = 800;
 
     public DrawPanel drawPanel;

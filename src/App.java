@@ -102,7 +102,8 @@ public class App {
             public void actionPerformed(ActionEvent e) { 
 				int size = vehicles.size();
 				if (size <= 0) return;
-				vehicles.remove(size-1);
+				Vehicle v = vehicles.remove(size-1);
+				v.notifyObservers();
 			}
         });
 

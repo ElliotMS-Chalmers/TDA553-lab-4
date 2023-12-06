@@ -10,7 +10,7 @@ abstract class Observable {
 		notifyObservers();
     }
 
-    protected void notifyObservers(){
+    public void notifyObservers(){
         for (Observer o : observers) {
            o.update();
         }

@@ -119,9 +119,4 @@ public abstract class Vehicle extends Observable implements Movable {
 		if (amount > 1 || amount < 0) return;
         decrementSpeed(amount);
     }
-
-	@Override
-    public void finalize() {
-		notifyObservers();
-    }
 }
