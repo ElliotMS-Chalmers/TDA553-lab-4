@@ -1,23 +1,15 @@
 package controller;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 import model.*;
 
 public class VehicleController {
-    private final int tickRate = 50;
-    private Timer timer;
     private final ArrayList<Vehicle> vehicles; 
 
-	public VehicleController(ArrayList<Vehicle> vehicles, TimerListener timerListener) {
+	public VehicleController(ArrayList<Vehicle> vehicles) {
 		this.vehicles = vehicles;
-        this.timer = new Timer(tickRate, timerListener);
 	}
-
-    public void run() {
-        timer.start();
-    }
 
     public void gas(int amount) {
         double gas = ((double) amount) / 100;

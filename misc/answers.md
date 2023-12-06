@@ -1,6 +1,8 @@
 ## Vilka avvikelser från MVC-idealet kan ni identifiera i det ursprungliga användargränssnittet? Vad borde ha gjorts smartare, dummare eller tunnare?
 - Controller är beroende av View
 - View är beroende av Controller
+- Timerlistener bör vara i Model
+- Knappar som har med user input bör vara i Controller
 
 ### Vilka av dessa brister åtgärdade ni med er nya design från del 2A? Hur då? Vilka brister åtgärdade ni inte?
 - Vi åtgärde att Controller var beroende av View genom ett observer pattern där View observerar model.
