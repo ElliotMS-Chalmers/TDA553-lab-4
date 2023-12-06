@@ -22,7 +22,7 @@ public class Frame extends JFrame implements Observer {
 		HashMap<Class<? extends Vehicle>,
 		BufferedImage> imageMap)
 	{
-		drawPanel = new DrawPanel(X, Y-240, vehicles, imageMap);
+		drawPanel = new DrawPanel(vehicles, imageMap);
         initComponents(title);
     }
 

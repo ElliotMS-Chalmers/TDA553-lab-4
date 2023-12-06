@@ -14,12 +14,12 @@ public class DrawPanel extends JPanel {
 	private final ArrayList<Vehicle> vehicles;
 	private final HashMap<Class<? extends Vehicle>, BufferedImage> imageMap;
 
-    public DrawPanel(int x, int y, ArrayList<Vehicle> vehicles, HashMap<Class<? extends Vehicle>, BufferedImage> imageMap) {
+    public DrawPanel(ArrayList<Vehicle> vehicles, HashMap<Class<? extends Vehicle>, BufferedImage> imageMap) {
         this.vehicles = vehicles;
 		this.imageMap = imageMap;
 
 		this.setDoubleBuffered(true);
-        this.setPreferredSize(new Dimension(x, y));
+        this.setPreferredSize(new Dimension(860, 800));
         this.setBackground(Color.green);
     }
 
@@ -33,7 +33,7 @@ public class DrawPanel extends JPanel {
 			double[] pos = v.getPosition();
 			g.drawImage(
 				image, 
-				(int)pos[0] + 100*i, 
+				(int)pos[0] + image.getWidth()*i, 
 				(int)pos[1],
 				null
 			);
