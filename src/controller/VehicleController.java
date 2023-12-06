@@ -13,10 +13,10 @@ public class VehicleController {
     private final int tickRate = 50;
     private Timer timer = new Timer(tickRate, new TimerListener());
 
-    ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private final ArrayList<Vehicle> vehicles;
 
-	public void addVehicle(Vehicle vehicle) {
-		vehicles.add(vehicle);
+	public VehicleController(ArrayList<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
     public void run() {

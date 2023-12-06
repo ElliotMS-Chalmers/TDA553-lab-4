@@ -5,6 +5,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 import controller.VehicleController;
 import model.Vehicle;
@@ -14,10 +17,7 @@ public class VehicleView extends JFrame implements Observer {
     private static final int X = 800;
     private static final int Y = 800;
 
-    VehicleController controller;
-
-    public DrawPanel drawPanel = new DrawPanel(X, Y-240);
-
+    public DrawPanel drawPanel;
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
@@ -35,13 +35,12 @@ public class VehicleView extends JFrame implements Observer {
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
-    public VehicleView(String framename, VehicleController vc){
-        this.controller = vc;
-        initComponents(framename);
-    }
+	JButton addVehicleButton = new JButton("Add vehicle");
+	JButton removeVehicleButton = new JButton("Remove vehicle");
 
-    public void addVehicle(Vehicle vehicle, String path) {
-        drawPanel.addVehicle(vehicle, path);
+    public VehicleView(String framename, ArrayList<Vehicle> vehicles, HashMap<Class<? extends Vehicle>, BufferedImage> imageMap) {
+		drawPanel = new DrawPanel(X, Y-240, vehicles, imageMap);
+        initComponents(framename);
     }
 
     private void initComponents(String title) {
@@ -71,7 +70,7 @@ public class VehicleView extends JFrame implements Observer {
 
         this.add(gasPanel);
 
-        controlPanel.setLayout(new GridLayout(2,4));
+        controlPanel.setLayout(new GridLayout(2, 5));
 
         controlPanel.add(gasButton, 0);
         controlPanel.add(turboOnButton, 1);
@@ -79,7 +78,9 @@ public class VehicleView extends JFrame implements Observer {
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
-        controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
+		controlPanel.add(addVehicleButton, 6);
+		controlPanel.add(removeVehicleButton, 7);
+        controlPanel.setPreferredSize(new Dimension((X/2)+100, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
@@ -94,8 +95,7 @@ public class VehicleView extends JFrame implements Observer {
         this.add(stopButton);
 
         this.pack();
-
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -132,6 +132,14 @@ public class VehicleView extends JFrame implements Observer {
     public void addTurboOffListener(ActionListener listener) {
         turboOffButton.addActionListener(listener);
     }
+
+	public void addVehicleListener(ActionListener listener) {
+		addVehicleButton.addActionListener(listener);
+	}
+
+	public void removeVehicleListener(ActionListener listener) {
+		removeVehicleButton.addActionListener(listener);
+	}
 
 	@Override
 	public void update() {
