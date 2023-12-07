@@ -44,11 +44,11 @@ public abstract class Vehicle extends Observable implements Movable {
 		}
 
 		double y = position[1];
-		if (y > 800-60 || y < 0) {
+		if (y > 600-60 || y < 0) {
 			stopEngine();
 			turnLeft();
 			turnLeft();
-			position[1] = 800-60;
+			position[1] = (y<0) ? 0 : (600-60);
 		}
 
 		notifyObservers();

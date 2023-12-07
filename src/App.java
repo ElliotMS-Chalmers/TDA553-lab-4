@@ -46,9 +46,9 @@ public class App {
 		frame.add(controlPanel);
 		frame.add(enginePanel);
 		
-		vehicles.add(new Volvo240());
-		vehicles.add(new Saab95());
-		vehicles.add(new Scania());
+		vehicles.add(VehicleFactory.createVolvo());
+		vehicles.add(VehicleFactory.createSaab());
+		vehicles.add(VehicleFactory.createScania());
 
         controller.run();
     }

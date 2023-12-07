@@ -94,13 +94,13 @@ public class VehicleController {
 	public void addVehicle() {
 		int size = vehicles.size();
 		if (size == 10) return;
-		Vehicle vehicle = new Volvo240();
+		Vehicle vehicle = VehicleFactory.createRandom();
 		vehicles.add(vehicle);
 	}
 
 	public void removeVehicle() {
 		int size = vehicles.size();
-		if (size <= 0) return;
+		if (size == 0) return;
 		Vehicle v = vehicles.remove(size-1);
 		v.notifyObservers();
 	}
